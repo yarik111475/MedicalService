@@ -53,10 +53,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Abstract\AbstractMsSqlRepository.cs" />
     <Compile Include="Repositories\Abstract\IRepository.cs" />
+    <Compile Include="Repositories\Concrete\MsSqlRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\Concrete\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
