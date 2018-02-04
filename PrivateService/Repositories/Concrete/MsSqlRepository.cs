@@ -10,6 +10,9 @@ using PrivateService.Repositories.Abstract;
 
 namespace PrivateService.Repositories.Concrete {
     public class MsSqlRepository : AbstractMsSqlRepository, IRepository {
+        public MsSqlRepository(string connectionString)
+            : base(connectionString) {
+        }
         #region CREATE
         public int CreatePacient(Pacient pacient) {
             throw new NotImplementedException();
