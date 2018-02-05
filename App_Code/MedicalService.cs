@@ -10,6 +10,7 @@ using PrivateService.Models;
 
 
 public class MedicalService : IPrivateMedicalService {
+    #region IPrivateMedicalServiceImplementation
     public int CreateNewPacient(string name, string birthday, string polisNumber, string phone) {
         throw new NotImplementedException();
     }
@@ -41,4 +42,5 @@ public class MedicalService : IPrivateMedicalService {
     public void SetAppointment(int appointmentId, int pacientId) {
         throw new NotImplementedException();
     }
+    #endregion
 }

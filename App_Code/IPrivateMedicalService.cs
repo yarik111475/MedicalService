@@ -11,8 +11,8 @@ using PrivateService.Models;
 [ServiceContract]
 public interface IPrivateMedicalService {
     [OperationContract]
-    [WebGet(UriTemplate="/createPacient?name={name}&birthday={birthday}&polisNumber={polisNumber}&phone={phone}")]
-    int CreateNewPacient(string name, string birthday, string polisNumber, string phone);
+    [WebGet(UriTemplate="/createPacient?firstName={firstName}&secondName={secondName}&lastName={lastName}&birthday={birthday}&polisNumber={polisNumber}&phone={phone}")]
+    int CreateNewPacient(string firstName, string secondName, string lastName, string birthday, string polisNumber, string phone);
 
     [OperationContract]
     [WebGet(UriTemplate="/getRegions")]

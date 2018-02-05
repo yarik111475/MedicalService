@@ -14,7 +14,11 @@ namespace PrivateService.Models {
         [DataMember]
         public int PacientId { get; set; }
         [DataMember]
-        public string PacientName { get; set; }
+        public string FirstName { get; set; }
+        [DataMember]
+        public string SecondName { get; set; }
+        [DataMember]
+        public string LastName { get; set; }
         [DataMember]
         public DateTime Birthday { get; set; }
         [DataMember]
