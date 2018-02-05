@@ -11,7 +11,7 @@ using PrivateService.Models;
 
 public class MedicalService : IPrivateMedicalService {
     #region IPrivateMedicalServiceImplementation
-    public int CreateNewPacient(string name, string birthday, string polisNumber, string phone) {
+    public int CreateNewPacient(string firstName, string secondName, string lastName, string birthday, string polisNumber, string phone) {
         throw new NotImplementedException();
     }
 
