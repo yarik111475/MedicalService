@@ -151,11 +151,45 @@ namespace PrivateService.Repositories.Concrete {
 
         #region READBYID
         public Pacient ReadPacientByPacientId(int pacientId) {
-            throw new NotImplementedException();
+            string command = "SELECT * FROM Pacients WHERE PacientId=@PacientId";
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    cmd.Parameters.AddWithValue("@PacientId", pacientId);
+                    using (SqlDataReader dr = cmd.ExecuteReader()) {
+                        if (!dr.HasRows) throw new Exception("wrong pacient id");
+                        dr.Read();
+                        Pacient pacient = new Pacient {
+                            PacientId = pacientId,
+                            FirstName = (string)dr["FirstName"],
+                            SecondName = (string)dr["SecondName"],
+                            LastName = (string)dr["LastName"],
+                            Birthday = (string)dr["Birthday"],
+                            PolisNumber = (string)dr["PolisNumber"],
+                            Phone = (string)dr["Phone"]
+                        };
+                        return pacient;
+                    }
+                }
+            }
         }
 
         public Region ReadRegionByRegionId(int regionId) {
-            throw new NotImplementedException();
+            string command = "SELECT * FROM Regions WHERE RegionId=@RegionId";
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    cmd.Parameters.AddWithValue("@RegionId", regionId);
+                    using (SqlDataReader dr = cmd.ExecuteReader()) {
+                        if (!dr.HasRows) throw new Exception("wrong region id");
+                        dr.Read();
+                        Region region = new Region {
+                            RegionId = regionId,
+                            RegionName = (string)dr["RegionName"],
+                            RegionCode = int.Parse(dr["RegionCode"].ToString())
+                        };
+                        return region;
+                    }
+                }
+            }
         }
 
         public City ReadCityByCityId(int cityId) {

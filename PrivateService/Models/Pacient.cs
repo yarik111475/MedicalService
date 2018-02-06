@@ -20,7 +20,7 @@ namespace PrivateService.Models {
         [DataMember]
         public string LastName { get; set; }
         [DataMember]
-        public DateTime Birthday { get; set; }
+        public string Birthday { get; set; }
         [DataMember]
         public string PolisNumber { get; set; }
         [DataMember]
