@@ -49,35 +49,170 @@ namespace PrivateService.Repositories.Concrete {
 
         #region READ
         public Pacient[] ReadPaciens() {
-            throw new NotImplementedException();
+            string command = "SELECT * From Pacients";
+            List<Pacient> pacients = new List<Pacient>();
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    using (SqlDataReader dr = cmd.ExecuteReader()) {
+                        while (dr.Read()) {
+                            Pacient pacient = new Pacient {
+                                PacientId = int.Parse(dr["PacientId"].ToString()),
+                                FirstName = (string)dr["FirstName"],
+                                SecondName = (string)dr["SecondName"],
+                                LastName = (string)dr["LastName"],
+                                Birthday = (string)dr["Birthday"],
+                                PolisNumber = (string)dr["PolisNumber"],
+                                Phone = (string)dr["Phone"]
+                            };
+                            pacients.Add(pacient);
+                        }
+                    }
+                }
+            }
+            return pacients.ToArray();
         }
 
         public Region[] ReadRegions() {
-            throw new NotImplementedException();
+            string command = "SELECT * FROM Regions";
+            List<Region> regions = new List<Region>();
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    using (SqlDataReader dr = cmd.ExecuteReader()) {
+                        while (dr.Read()) {
+                            Region region = new Region {
+                                RegionId = int.Parse(dr["RegionId"].ToString()),
+                                RegionName = (string)dr["RegionName"],
+                                RegionCode = int.Parse(dr["RegionCode"].ToString())
+                            };
+                            regions.Add(region);
+                        }
+                    }
+                }
+            }
+            return regions.ToArray();
         }
 
         public City[] ReadCities() {
-            throw new NotImplementedException();
+            string command = "SELECT * FROM Cities";
+            List<City> cities = new List<City>();
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    using (SqlDataReader dr = cmd.ExecuteReader()) {
+                        while (dr.Read()) {
+                            City city = new City {
+                                CityId = int.Parse(dr["CityId"].ToString()),
+                                CityName = (string)dr["CityName"],
+                                RegionId = int.Parse(dr["RegionId"].ToString())
+                            };
+                            cities.Add(city);
+                        }
+                    }
+                }
+            }
+            return cities.ToArray();
         }
 
         public Doctor[] ReadDoctors() {
-            throw new NotImplementedException();
+            string command = "SELECT * FROM Doctors";
+            List<Doctor> doctors = new List<Doctor>();
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    using (SqlDataReader dr = cmd.ExecuteReader()) {
+                        while (dr.Read()) {
+                            Doctor doctor = new Doctor {
+                                DoctorId = int.Parse(dr["DoctorId"].ToString()),
+                                DoctorName = (string)dr["DoctorName"],
+                                SpecialityId = int.Parse(dr["SpecialityId"].ToString())
+                            };
+                            doctors.Add(doctor);
+                        }
+                    }
+                }
+            }
+            return doctors.ToArray();
         }
 
         public Speciality[] ReadSpecialities() {
-            throw new NotImplementedException();
+            string command = "SELECT * FROM Specialities";
+            List<Speciality> specialities = new List<Speciality>();
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    using (SqlDataReader dr = cmd.ExecuteReader()) {
+                        while (dr.Read()) {
+                            Speciality speciality = new Speciality {
+                                SpecialityId = int.Parse(dr["SpecialityId"].ToString()),
+                                SpecialityName = (string)dr["SpecialityName"]
+                            };
+                            specialities.Add(speciality);
+                        }
+                    }
+                }
+            }
+            return specialities.ToArray();
         }
 
         public Clinic[] ReadClinics() {
-            throw new NotImplementedException();
+            string command = "SELECT * FROM Clinics";
+            List<Clinic> clinics = new List<Clinic>();
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    using (SqlDataReader dr = cmd.ExecuteReader()) {
+                        while (dr.Read()) {
+                            Clinic clinic = new Clinic {
+                                ClinicId = int.Parse(dr["ClinicId"].ToString()),
+                                ClinicName = (string)dr["ClinicName"],
+                                ClinicAddress = (string)dr["ClinicAddress"],
+                                CityId = int.Parse(dr["CityId"].ToString())
+                            };
+                            clinics.Add(clinic);
+                        }
+                    }
+                }
+            }
+            return clinics.ToArray();
         }
 
         public Appointment[] ReadAppointments() {
-            throw new NotImplementedException();
+            string command = "SELECT * FROM Appointments";
+            List<Appointment> appointments = new List<Appointment>();
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    using (SqlDataReader dr = cmd.ExecuteReader()) {
+                        while (dr.Read()) {
+                            Appointment appointment = new Appointment {
+                                AppointmentId = int.Parse(dr["AppointmentId"].ToString()),
+                                AppointmentState = (string)dr["AppointmentState"],
+                                AppointmentDate = DateTime.Parse(dr["AppointmentDate"].ToString()),
+                                ClinicId = int.Parse(dr["ClinicId"].ToString()),
+                                DoctorId = int.Parse(dr["DoctorId"].ToString()),
+                                PacientId = dr["PacientId"] == DBNull.Value ? -1 : int.Parse(dr["PacientId"].ToString())
+                            };
+                            appointments.Add(appointment);
+                        }
+                    }
+                }
+            }
+            return appointments.ToArray();
         }
 
         public DoctorsToClinics[] ReadDoctorsToClinics() {
-            throw new NotImplementedException();
+            string command = "SELECT * FROM DoctorsToClinics";
+            List<DoctorsToClinics> doctorsToClinics = new List<DoctorsToClinics>();
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    using (SqlDataReader dr = cmd.ExecuteReader()) {
+                        while (dr.Read()) {
+                            DoctorsToClinics dtc = new DoctorsToClinics {
+                                DoctorsToClinicsId = int.Parse(dr["DoctorsToClinicsId"].ToString()),
+                                DoctorId = int.Parse(dr["DoctorId"].ToString()),
+                                ClinicId = int.Parse(dr["ClinicId"].ToString())
+                            };
+                            doctorsToClinics.Add(dtc);
+                        }
+                    }
+                }
+            }
+            return doctorsToClinics.ToArray();
         }
         #endregion
 
@@ -193,7 +328,22 @@ namespace PrivateService.Repositories.Concrete {
         }
 
         public City ReadCityByCityId(int cityId) {
-            throw new NotImplementedException();
+            string command = "SELECT * FROM Cities WHERE CityId=@CityId";
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    cmd.Parameters.AddWithValue("@CityId", cityId);
+                    using (SqlDataReader dr = cmd.ExecuteReader()) {
+                        if (!dr.HasRows) throw new Exception("erong city id");
+                        dr.Read();
+                        City city = new City {
+                            CityId = int.Parse(dr["CityId"].ToString()),
+                            CityName = (string)dr["CityName"],
+                            RegionId = int.Parse(dr["RegionId"].ToString())
+                        };
+                        return city;
+                    }
+                }
+            }
         }
 
         public Doctor ReadDoctorByDoctorId(int doctorId) {
