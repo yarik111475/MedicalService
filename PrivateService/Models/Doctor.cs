@@ -16,6 +16,8 @@ namespace PrivateService.Models {
         [DataMember]
         public string DoctorName { get; set; }
         [DataMember]
+        public string Password { get; set; }
+        [DataMember]
         public int SpecialityId { get; set; }
     }
 }

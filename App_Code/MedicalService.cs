@@ -59,7 +59,13 @@ public class MedicalService : IPrivateMedicalService {
     /// </summary>
     /// <returns>Список регионов</returns>
     public Region[] GetReagions() {
-        return repository.ReadRegions();
+        try {
+            return repository.ReadRegions();
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
     }
 
     /// <summary>
@@ -68,9 +74,15 @@ public class MedicalService : IPrivateMedicalService {
     /// <param name="regionId">Идентификатор региона</param>
     /// <returns>Список городов</returns>
     public City[] GetCitiesByRegionId(int regionId) {
-        return repository.ReadCities()
+        try {
+            return repository.ReadCities()
             .Where(c => c.RegionId == regionId)
             .ToArray();
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
     }
 
     /// <summary>
@@ -78,7 +90,13 @@ public class MedicalService : IPrivateMedicalService {
     /// </summary>
     /// <returns>Сптсок специальностей</returns>
     public Speciality[] GetSpecialities() {
-        return repository.ReadSpecialities();
+        try {
+            return repository.ReadSpecialities();
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
     }
 
     /// <summary>
@@ -87,9 +105,15 @@ public class MedicalService : IPrivateMedicalService {
     /// <param name="specialityId">Идентификатор специальности</param>
     /// <returns>Список врачей</returns>
     public Doctor[] GetDoctorsBySpecialityId(int specialityId) {
-        return repository.ReadDoctors()
+        try {
+            return repository.ReadDoctors()
             .Where(d => d.SpecialityId == specialityId)
             .ToArray();
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
     }
 
     /// <summary>
@@ -99,10 +123,16 @@ public class MedicalService : IPrivateMedicalService {
     /// <param name="doctorId">Идентификатор врача</param>
     /// <returns>Список клиник</returns>
     public Clinic[] GetClinicsByCityIdAndDoctorId(int cityId, int doctorId) {
-        var clinicsByCityId = repository.ReadClinics().Where(c => c.CityId == cityId);
-        var indexes = repository.ReadDoctorsToClinics().Where(dc => dc.DoctorId == doctorId).Select(dc => dc.ClinicId);
-        var selectedClinics = clinicsByCityId.Where(c => indexes.Contains(c.ClinicId)).ToArray();
-        return selectedClinics;
+        try {
+            var clinicsByCityId = repository.ReadClinics().Where(c => c.CityId == cityId);
+            var indexes = repository.ReadDoctorsToClinics().Where(dc => dc.DoctorId == doctorId).Select(dc => dc.ClinicId);
+            var selectedClinics = clinicsByCityId.Where(c => indexes.Contains(c.ClinicId)).ToArray();
+            return selectedClinics;
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
     }
 
     /// <summary>
@@ -112,9 +142,15 @@ public class MedicalService : IPrivateMedicalService {
     /// <param name="doctorId">Идентификатор врача</param>
     /// <returns>Список точек записи</returns>
     public Appointment[] GetAppointmentsByClinicIdAndDoctorId(int clinicId, int doctorId) {
-        return repository.ReadAppointments()
+        try {
+            return repository.ReadAppointments()
             .Where(a => a.ClinicId == clinicId && a.DoctorId == doctorId)
             .ToArray();
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
     }
 
     /// <summary>
@@ -123,9 +159,15 @@ public class MedicalService : IPrivateMedicalService {
     /// <param name="appointmentId">Идентификатор точки записи на прием</param>
     /// <param name="pacientId">Идентификатор пациента</param>
     public void SetAppointment(int appointmentId, int pacientId) {
-        Appointment appointment = repository.ReadAppointmentByAppointmentId(appointmentId);
-        appointment.PacientId = pacientId;
-        repository.UpdateAppointments(appointment);
+        try {
+            Appointment appointment = repository.ReadAppointmentByAppointmentId(appointmentId);
+            appointment.PacientId = pacientId;
+            repository.UpdateAppointments(appointment);
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
     }
     #endregion
 }

@@ -56,6 +56,7 @@ namespace PrivateService.Repositories.Abstract {
         Region ReadRegionByRegionId(int regionId);
         City ReadCityByCityId(int cityId);
         Doctor ReadDoctorByDoctorId(int doctorId);
+        Doctor ReadDoctorByDoctorPassword(string doctorPassword);
         Speciality ReadSpecialityBySpecialityId(int specialityId);
         Clinic ReadClinicByClinicId(int clinicId);
         Appointment ReadAppointmentByAppointmentId(int appointmentId);

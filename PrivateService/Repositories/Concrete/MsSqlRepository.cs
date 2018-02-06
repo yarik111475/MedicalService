@@ -15,7 +15,21 @@ namespace PrivateService.Repositories.Concrete {
         }
         #region CREATE
         public int CreatePacient(Pacient pacient) {
-            throw new NotImplementedException();
+            string command = "INSERT INTO Pacients(FirstName, SecondName, LastName, Birthday, PolisNumber, Phone) VALUES (@FirstName, @SecondName, @LastName, @Birthday, @PolisNumber, @Phone) SET @PacientId=SCOPE_IDENTITY";
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    cmd.Parameters.AddWithValue("@FirstName", pacient.FirstName);
+                    cmd.Parameters.AddWithValue("@SecondName", pacient.SecondName);
+                    cmd.Parameters.AddWithValue("@LastName", pacient.LastName);
+                    cmd.Parameters.AddWithValue("@Birthday", pacient.Birthday);
+                    cmd.Parameters.AddWithValue("@PolisNumber", pacient.PolisNumber);
+                    cmd.Parameters.AddWithValue("@Phone", pacient.Phone);
+                    cmd.Parameters.AddWithValue("@PacientId", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.ExecuteNonQuery();
+                    int pacientId = cmd.Parameters["@PacientId"].Value==DBNull.Value ? -1 : int.Parse(cmd.Parameters["@PacientId"].Value.ToString());
+                    return pacientId;
+                }
+            }
         }
 
         public void CreateRegion(Region region) {
@@ -242,7 +256,18 @@ namespace PrivateService.Repositories.Concrete {
         }
 
         public void UpdateAppointments(Appointment appointment) {
-            throw new NotImplementedException();
+            string command = "UPDATE Appointments SET AppointmentSate=@AppointmentState, AppointmentDate=@AppointmentDate, ClinicId=@ClinicId, DoctorId=@DoctorId, PacientId=@PacientId WHERE AppointmentId=@AppointmentId";
+            using (SqlConnection cnn = CreateConnection()) {
+                using (SqlCommand cmd = new SqlCommand(command, cnn)) {
+                    cmd.Parameters.AddWithValue("@AppointmentId", appointment.AppointmentId);
+                    cmd.Parameters.AddWithValue("@AppointmentState", appointment.AppointmentState);
+                    cmd.Parameters.AddWithValue("@AppointmentDate", appointment.AppointmentDate);
+                    cmd.Parameters.AddWithValue("@ClinicId", appointment.ClinicId);
+                    cmd.Parameters.AddWithValue("@DoctorId", appointment.DoctorId);
+                    cmd.Parameters.AddWithValue("@PacientId", appointment.PacientId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public void UpdateDoctorsToClinics(DoctorsToClinics doctorstoclinics) {
@@ -347,6 +372,10 @@ namespace PrivateService.Repositories.Concrete {
         }
 
         public Doctor ReadDoctorByDoctorId(int doctorId) {
+            throw new NotImplementedException();
+        }
+
+        public Doctor ReadDoctorByDoctorPassword(string doctorPassword) {
             throw new NotImplementedException();
         }
 
