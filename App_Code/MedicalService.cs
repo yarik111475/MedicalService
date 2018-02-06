@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
+using System.ServiceModel.Activation;
 using System.Text;
 using System.Configuration;
 
@@ -11,10 +12,14 @@ using PrivateService.Models;
 using PrivateService.Repositories.Abstract;
 using PrivateService.Repositories.Concrete;
 
+using NetrikaService.Wrappers;
+
 /// <summary>
 /// Реализация контракта службы
 /// </summary>
-public class MedicalService : IPrivateMedicalService {
+[AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
+public class MedicalService : IPrivateMedicalService, INetrikaMedicalService {
+    private NetrikaWrapper netrikaWrapper;
     /// <summary>
     /// Поле репозитория
     /// </summary>
@@ -22,13 +27,17 @@ public class MedicalService : IPrivateMedicalService {
     /// <summary>
     /// Поле строки соединения с БД
     /// </summary>
-    private string connectionString = ConfigurationManager.ConnectionStrings["MedicalBase"].ConnectionString;
+    private string connectionString = ConfigurationManager.ConnectionStrings["TestBase"].ConnectionString;
 
     /// <summary>
     /// Конструктор
     /// </summary>
     public MedicalService() {
         repository = new MsSqlRepository(connectionString);
+
+        string guid = ConfigurationManager.AppSettings["guid"];
+        int? idHistory = int.Parse(ConfigurationManager.AppSettings["idHistory"]);
+        netrikaWrapper = new NetrikaWrapper(guid, idHistory);
     }
 
     #region IPrivateMedicalServiceImplementation
@@ -170,4 +179,25 @@ public class MedicalService : IPrivateMedicalService {
         }
     }
     #endregion
+
+    public NetrikaService.NetrikaReference.District[] GetDistricts() {
+        try {
+            return netrikaWrapper.GetDistrists();
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
+    }
+
+
+    public NetrikaService.NetrikaReference.Clinic[] GetClinics(int idDistrict) {
+        try {
+            return netrikaWrapper.GetClinics(idDistrict);
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
+    }
 }
