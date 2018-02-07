@@ -1,5 +1,0 @@
-C:\c#\projects\development\MedicalService\PrivateService\bin\Debug\PrivateService.dll
-C:\c#\projects\development\MedicalService\PrivateService\bin\Debug\PrivateService.pdb
-C:\c#\projects\development\MedicalService\PrivateService\obj\Debug\PrivateService.csprojResolveAssemblyReference.cache
-C:\c#\projects\development\MedicalService\PrivateService\obj\Debug\PrivateService.dll
-C:\c#\projects\development\MedicalService\PrivateService\obj\Debug\PrivateService.pdb
