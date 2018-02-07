@@ -180,6 +180,8 @@ public class MedicalService : IPrivateMedicalService, INetrikaMedicalService {
     }
     #endregion
 
+    #region INetrikaMedicalServiceImplementation
+
     public NetrikaService.NetrikaReference.District[] GetDistricts() {
         try {
             return netrikaWrapper.GetDistrists();
@@ -200,4 +202,9 @@ public class MedicalService : IPrivateMedicalService, INetrikaMedicalService {
             throw error;
         }
     }
+
+    public NetrikaService.NetrikaReference.PatientsArea[] GetPacientAreas(string idLpu, string idPat) {
+        throw new NotImplementedException();
+    }
+    #endregion
 }
