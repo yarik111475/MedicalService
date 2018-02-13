@@ -204,7 +204,56 @@ public class MedicalService : IPrivateMedicalService, INetrikaMedicalService {
     }
 
     public NetrikaService.NetrikaReference.PatientsArea[] GetPacientAreas(string idLpu, string idPat) {
-        throw new NotImplementedException();
+        try {
+            return netrikaWrapper.GetPacientAreas(idLpu, idPat);
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
     }
-    #endregion
+
+    public NetrikaService.NetrikaReference.Spesiality[] GetSpecialities(int idLpu, string idPat) {
+        try {
+            return netrikaWrapper.GetSpecialities(idLpu, idPat);
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
+    }
+
+    public DateTime[] GetAvailableDates(string idDoc, int idLpu, string idPat, DateTime visitStart, DateTime visitEnd) {
+        try {
+            return netrikaWrapper.GetAvailableDates(idDoc, idLpu, idPat, visitStart, visitEnd);
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
+    }
+
+    public NetrikaService.NetrikaReference.Appointment[] GetAvailableAppointments(string idDoc, int idLpu, string idPat, DateTime visitStart, DateTime visitEnd) {
+        try {
+            return netrikaWrapper.GetAvailableAppointments(idDoc, idLpu, idPat, visitStart, visitEnd);
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
+    }
+
+    public NetrikaService.NetrikaReference.Doctor1[] GetDoctors(string idSpeciality, int idLpu, string idPat) {
+        try {
+            return netrikaWrapper.GetDoctors(idSpeciality, idLpu, idPat);
+        }
+        catch (Exception ex) {
+            FaultException error = new FaultException(ex.Message);
+            throw error;
+        }
+    }
+    #endregion    
+
+
+    
 }

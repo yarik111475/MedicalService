@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="40566007-9ce0-48f2-abe3-d0395212ceac" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://r23-rc.zdrav.netrika.ru/Hub2/HubService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="HubService.xsd" MetadataType="Schema" ID="3de91fdc-e633-4aa2-a95c-2d018fe8b9bc" SourceId="1" SourceUrl="http://r23-rc.zdrav.netrika.ru/Hub2/HubService.svc?xsd=xsd0" />
+    <MetadataFile FileName="HubService1.xsd" MetadataType="Schema" ID="a10a8ffb-eaa5-4873-b900-a0f49234fcd8" SourceId="1" SourceUrl="http://r23-rc.zdrav.netrika.ru/Hub2/HubService.svc?xsd=xsd3" />
+    <MetadataFile FileName="HubService.disco" MetadataType="Disco" ID="33714811-7013-4a76-86d6-525f98d34154" SourceId="1" SourceUrl="http://r23-rc.zdrav.netrika.ru/Hub2/HubService.svc?disco" />
+    <MetadataFile FileName="HubService.wsdl" MetadataType="Wsdl" ID="8b5cbb1c-065f-44e1-b0e6-0226f880dc73" SourceId="1" SourceUrl="http://r23-rc.zdrav.netrika.ru/Hub2/HubService.svc?wsdl" />
+    <MetadataFile FileName="HubService2.xsd" MetadataType="Schema" ID="175bf8bd-bf11-4fd9-b303-010fb369a785" SourceId="1" SourceUrl="http://r23-rc.zdrav.netrika.ru/Hub2/HubService.svc?xsd=xsd2" />
+    <MetadataFile FileName="HubService3.xsd" MetadataType="Schema" ID="dc703bba-5de3-4c9e-8f61-73baa93d54f9" SourceId="1" SourceUrl="http://r23-rc.zdrav.netrika.ru/Hub2/HubService.svc?xsd=xsd5" />
+    <MetadataFile FileName="HubService4.xsd" MetadataType="Schema" ID="62bd8546-e2f6-4992-aff2-56cb0f4c3866" SourceId="1" SourceUrl="http://r23-rc.zdrav.netrika.ru/Hub2/HubService.svc?xsd=xsd1" />
+    <MetadataFile FileName="HubService5.xsd" MetadataType="Schema" ID="07ee31dd-6f01-4427-b4ea-be003c07fa87" SourceId="1" SourceUrl="http://r23-rc.zdrav.netrika.ru/Hub2/HubService.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

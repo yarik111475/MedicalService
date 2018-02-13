@@ -1,0 +1,6 @@
+C:\c#\projects\development\MedicalService\NetrikaService\obj\Debug\NetrikaService.csprojResolveAssemblyReference.cache
+C:\c#\projects\development\MedicalService\NetrikaService\bin\Debug\NetrikaService.dll.config
+C:\c#\projects\development\MedicalService\NetrikaService\bin\Debug\NetrikaService.dll
+C:\c#\projects\development\MedicalService\NetrikaService\bin\Debug\NetrikaService.pdb
+C:\c#\projects\development\MedicalService\NetrikaService\obj\Debug\NetrikaService.dll
+C:\c#\projects\development\MedicalService\NetrikaService\obj\Debug\NetrikaService.pdb
